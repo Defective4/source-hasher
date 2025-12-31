@@ -9,10 +9,10 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     </properties>
     <distributionManagement>
-        <repository>
-            <id>raspberrypi</id>
-            <url>https://git.raspberry.local/api/packages/Defective/maven</url>
-        </repository>
+	<repository>
+		<id>sonatype-nexus-staging</id>
+		<url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2</url>
+	</repository>
     </distributionManagement>
     <build>
         <plugins>
@@ -24,6 +24,30 @@
                     <release>8</release>
                 </configuration>
             </plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-source-plugin</artifactId>
+			<version>3.3.1</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>jar-no-fork</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>3.6.3</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
         </plugins>
     </build>
     <dependencies>
